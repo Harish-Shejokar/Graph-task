@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graph</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- <h1 class="text-center">Graph</h1> -->
+
+    <div class="input-group input-group-lg" id="cont">
+      <input
+        id="inputValue"
+        type="number"
+        onkeyup="getValues()"
+        placeholder="Input Value"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg"
+      />
+      <input
+        onkeyup="getValues()"
+        id="MaxValue"
+        type="number"
+        placeholder="Max Value"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg"
+      />
+    </div>
+
+    <h2 class="text-center">Graphs</h2>
+    <div class="container">
+      <!-- //bar-1 -->
+      <div>
+        <div id="bar-1" class="bar-1">
+          <div id="up"></div>
+        </div>
+        <div class="text" id="b1Text">0%</div>
+      </div>
+
+      <!-- pie-chart -->
+      <div>
+      <div id="pie-chart" class="pie-chart"></div>
+      <!-- <div class="text">0%</div> -->
+      </div>
+
+      <!-- ///bar-2 -->
+      <div>
+      <div id="bar-2" class="bar-2">
+         <div id="b-3"></div>
+      </div>
+        <div class="text" id="b2Text">0%</div>
+
+      </div>
+    </div>
+
+    <script>
+      function getValues() {
+        let inputValue = Number(document.getElementById("inputValue").value);
+        let maxValue = Number(document.getElementById("MaxValue").value);
+        let b1Num = document.getElementById("b1Text");
+        let b2Num = document.getElementById("b2Text");
+
+        if (maxValue < inputValue) {
+          alert("MaxValue must greater than INput value");
+          return;
+          // console.log(maxValue,inputValue);
+        }
+
+        // console.log(inputValue);
+
+        // bar-1
+        let first = document.getElementById("up");
+        first.style.width = "101px";
+
+        let actualValue = Math.floor((inputValue / maxValue) * 100);
+        let converValue = Math.floor((actualValue / 100) * 275);
+        console.log(converValue);
+        first.style.height = `${converValue}px`;
+        first.style.backgroundColor = "#008CFF";
+        // first.style.borderColor = "red";
+        first.style.transition = ".9s";
+        if(isNaN(actualValue)) actualValue = 0;
+        b1Num.innerHTML = actualValue + "%";
+
+
+        // bar-2
+        let b3 = document.getElementById("b-3");
+        b3.style.width = "101px";
+
+        b3.style.height = `${converValue}px`;
+        b3.style.backgroundColor = "#008CFF";
+        // first.style.borderColor = "red";
+        b3.style.transition = ".9s";
+        b2Num.innerHTML = actualValue + "%";
+       
+
+
+      }
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
